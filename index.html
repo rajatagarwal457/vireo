@@ -245,6 +245,40 @@
   .mini-tweet .tweet-body{font-size:15px;margin:12px 0 0}
   @media(max-width:860px){.social-grid{grid-template-columns:1fr}}
 
+  /* ---- stats strip ---- */
+  .stat-strip{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+  .stat-pill{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:3px}
+  .stat-pill .big{font-family:"Instrument Serif",serif;font-size:38px;line-height:1;color:var(--accent)}
+  .stat-pill span{font-size:13px;color:var(--muted);font-weight:500}
+
+  /* ---- tweet wall (masonry) ---- */
+  .tweet-wall{columns:3;column-gap:18px}
+  @media(max-width:900px){.tweet-wall{columns:2}}
+  @media(max-width:600px){.tweet-wall{columns:1}}
+  .tw{break-inside:avoid;-webkit-column-break-inside:avoid;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 21px;margin:0 0 18px;box-shadow:var(--shadow-sm);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+  .tw:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+  .tw-head{display:flex;align-items:center;gap:11px}
+  .tw-head .avatar{width:42px;height:42px;font-size:16px}
+  .tw-head .nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+  .tw-head .nm .row{display:flex;align-items:center;gap:4px;font-weight:700;font-size:14.5px}
+  .tw-head .nm .h{font-size:13px;color:var(--muted)}
+  .tw-head .verified{width:15px;height:15px}
+  .tw-head .x-logo{margin-left:auto;opacity:.7}
+  .tw-head .x-logo svg{width:17px;height:17px}
+  .tw-body{font-size:14.5px;line-height:1.5;margin:13px 0 0;color:var(--ink-2)}
+  .tw-body .hl{color:#1d9bf0}
+  .tw-body b{color:var(--ink);font-weight:600}
+  .tw-foot{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:12.5px;margin-top:15px;padding-top:13px;border-top:1px solid var(--line-2)}
+  .tw-foot span{display:inline-flex;align-items:center;gap:6px}
+  .tw-foot svg{width:14px;height:14px}
+  .tw .clip-chip{display:inline-flex;align-items:center;gap:8px;margin-top:13px;font-size:12.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(31,92,61,.14);border-radius:100px;padding:6px 13px 6px 8px}
+  .tw .clip-chip .ic{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+  .tw .clip-chip .ic svg{width:11px;height:11px;margin-left:1px}
+  .avatar.c{background:linear-gradient(145deg,#5b8dc9,#2a5285)}
+  .avatar.d{background:linear-gradient(145deg,#B072C9,#6a2a85)}
+  .avatar.e{background:linear-gradient(145deg,#C9A24A,#8a6626)}
+  .avatar.f{background:linear-gradient(145deg,#4AB0A0,#26857a)}
+
   /* try / form */
   .try-wrap{background:linear-gradient(165deg,#1d4a35,#13201a);border-radius:var(--r-xl);padding:60px 56px;color:#EAF0E6;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
   .try-wrap::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,240,139,.18),transparent 70%);top:-160px;right:-80px}
@@ -268,6 +302,14 @@
   .form-card .btn-primary{width:100%;justify-content:center;background:#C9F08B;color:#16241c;font-size:16px;padding:15px;margin-top:6px}
   .form-card .btn-primary:hover{box-shadow:0 12px 34px rgba(201,240,139,.34)}
   .fineprint{font-size:12.5px;color:rgba(234,240,230,.55);margin-top:14px;text-align:center}
+  /* field errors */
+  .field .err{display:none;align-items:center;gap:6px;font-size:12.5px;color:#F2B8A0;margin-top:7px;font-weight:500}
+  .field .err svg{width:14px;height:14px;flex:0 0 auto}
+  .field.invalid .err{display:flex}
+  .field.invalid input, .field.invalid select{border-color:#E89B7A;background:rgba(232,155,122,.09)}
+  .form-error{display:none;align-items:center;gap:8px;font-size:13.5px;color:#F2B8A0;background:rgba(232,155,122,.1);border:1px solid rgba(232,155,122,.28);border-radius:12px;padding:11px 14px;margin-bottom:16px}
+  .form-error.show{display:flex}
+  .form-error svg{width:16px;height:16px;flex:0 0 auto}
 
   /* success state */
   .sent{display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:24px 10px;animation:msgIn .5s}
@@ -491,51 +533,119 @@
         <h2 class="sec-title">The internet is already <span class="serif it">talking.</span></h2>
         <p>Early creators are shipping more, faster — and telling everyone about it.</p>
       </div>
-      <div class="social-grid">
-        <div class="tweet reveal">
-          <div class="tweet-head">
+      <div class="stat-strip reveal">
+        <div class="stat-pill"><span class="big">4×</span><span>faster to a posted video</span></div>
+        <div class="stat-pill"><span class="big">18s</span><span>median time to first cut</span></div>
+        <div class="stat-pill"><span class="big">2,400+</span><span>creators on the waitlist</span></div>
+      </div>
+
+      <div class="tweet-wall reveal">
+        <!-- 1 -->
+        <div class="tw">
+          <div class="tw-head">
             <div class="avatar">M</div>
             <div class="nm">
-              <span class="row">Maya Rivera
-                <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34Zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77Z"/></svg>
-              </span>
+              <span class="row">Maya Rivera <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34Zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77Z"/></svg></span>
               <span class="h">@mayamakes</span>
             </div>
             <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
           </div>
-          <div class="tweet-body">ok <span class="hl">@vireo</span> is unfair. I dumped 11 messy clips from a shoot, typed “make it a 22s reel, hype, cut to the beat” and had a postable edit before my coffee. then just told it “tighten the intro” and it… did. I edit 4x faster now 😭</div>
-          <div class="tweet-media">
-            <div class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="lab">vireo-edit_final.mp4 · 0:22</div>
-          </div>
-          <div class="tweet-foot">
+          <div class="tw-body">ok <span class="hl">@vireo</span> is unfair. dumped 11 messy clips, typed <b>“make it a 22s reel, hype, cut to the beat”</b> and had a postable edit before my coffee. then just said “tighten the intro” and it… did 😭</div>
+          <div class="tw-foot">
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>312</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>1.2K</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>9.4K</span>
           </div>
-          <div class="tweet-date">11:42 AM · Jun 18, 2026</div>
         </div>
 
-        <div class="stats">
-          <div class="statcard reveal d1">
-            <div class="big">4×</div>
-            <p>Faster from raw footage to a posted video, reported by early creators.</p>
-          </div>
-          <div class="statcard reveal d2">
-            <div class="big">18s</div>
-            <p>Median time to a first watchable cut after upload.</p>
-          </div>
-          <div class="mini-tweet reveal d3">
-            <div class="tweet-head">
-              <div class="avatar b">J</div>
-              <div class="nm">
-                <span class="row">Jordan Pak
-                  <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34Zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77Z"/></svg>
-                </span>
-                <span class="h">@jpakshoots</span>
-              </div>
+        <!-- 2 -->
+        <div class="tw">
+          <div class="tw-head">
+            <div class="avatar c">L</div>
+            <div class="nm">
+              <span class="row">Leo Fontaine</span>
+              <span class="h">@leoshootsfilm</span>
             </div>
-            <div class="tweet-body">replaced my whole editing weekend with a chat window. wild.</div>
+            <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
+          </div>
+          <div class="tw-body">the beat-syncing is the part that got me. dropped in my own track and the cuts just landed on the transients. i've spent years doing that by hand.</div>
+          <div class="tw-foot">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>47</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>206</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>1.8K</span>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="tw">
+          <div class="tw-head">
+            <div class="avatar d">P</div>
+            <div class="nm">
+              <span class="row">Priya Nair <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34Zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77Z"/></svg></span>
+              <span class="h">@priyacreates</span>
+            </div>
+            <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
+          </div>
+          <div class="tw-body">went from 2 reels a week to 2 a day. not because i'm faster — because i finally don't dread the editing part. this is a real unlock for solo creators.</div>
+          <div class="tw-foot">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>133</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>512</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>3.9K</span>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="tw">
+          <div class="tw-head">
+            <div class="avatar b">J</div>
+            <div class="nm">
+              <span class="row">Jordan Pak <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34Zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77Z"/></svg></span>
+              <span class="h">@jpakshoots</span>
+            </div>
+            <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
+          </div>
+          <div class="tw-body">replaced my whole editing weekend with a chat window. wild.</div>
+          <div class="tw-foot">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>88</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>430</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>2.7K</span>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="tw">
+          <div class="tw-head">
+            <div class="avatar e">D</div>
+            <div class="nm">
+              <span class="row">Devon Carter</span>
+              <span class="h">@dcartermedia</span>
+            </div>
+            <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
+          </div>
+          <div class="tw-body">was fully ready to hate this. AI editors are usually a mess. but the auto-captions actually matched my brand font and it kept the cuts <b>tasteful</b>. didn't overstuff transitions. impressed tbh.</div>
+          <div class="clip-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span> reel-final.mp4 · 0:19</div>
+          <div class="tw-foot">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>61</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>318</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>2.4K</span>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="tw">
+          <div class="tw-head">
+            <div class="avatar f">S</div>
+            <div class="nm">
+              <span class="row">Sofia Brenner</span>
+              <span class="h">@sofiabrenner</span>
+            </div>
+            <span class="x-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span>
+          </div>
+          <div class="tw-body">i run socials for 3 small clients and never learned Premiere. told <span class="hl">@vireo</span> the vibe in plain english for each and had a week of content by lunch. this is the tool i've been waiting for.</div>
+          <div class="tw-foot">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>94</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>377</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>3.1K</span>
           </div>
         </div>
       </div>
@@ -560,13 +670,19 @@
 
           <div class="form-card">
             <form id="tryForm" novalidate>
-              <div class="field">
+              <div class="form-error" id="formError">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+                <span>Please fix the highlighted fields below.</span>
+              </div>
+              <div class="field" id="nameField">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Alex Carter" required />
+                <span class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span class="err-text">Please enter your name.</span></span>
               </div>
-              <div class="field">
+              <div class="field" id="emailField">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="you@email.com" required />
+                <span class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span class="err-text">Please enter a valid email.</span></span>
               </div>
               <div class="field">
                 <label for="role">What do you make?</label>
@@ -660,28 +776,68 @@
     const sent = document.getElementById('sentState');
     const sentMsg = document.getElementById('sentMsg');
     const again = document.getElementById('againBtn');
+    const formError = document.getElementById('formError');
+
+    const name       = document.getElementById('name');
+    const email      = document.getElementById('email');
+    const nameField  = document.getElementById('nameField');
+    const emailField = document.getElementById('emailField');
+
+    // Reasonably strict email check (requires a real domain + TLD)
+    const emailRe = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+    function setError(field, msg){
+      field.classList.add('invalid');
+      if(msg) field.querySelector('.err-text').textContent = msg;
+    }
+    function clearError(field){ field.classList.remove('invalid'); }
+
+    function validate(){
+      let ok = true;
+      const nameVal  = name.value.trim();
+      const emailVal = email.value.trim();
+
+      // Name
+      if(!nameVal){ setError(nameField, 'Please enter your name.'); ok = false; }
+      else clearError(nameField);
+
+      // Email
+      if(!emailVal){ setError(emailField, 'Please enter your email.'); ok = false; }
+      else if(!emailRe.test(emailVal)){ setError(emailField, 'That doesn’t look like a valid email.'); ok = false; }
+      else clearError(emailField);
+
+      return ok;
+    }
+
+    // Clear a field's error as soon as the user fixes it
+    name.addEventListener('input', ()=>{ if(name.value.trim()) clearError(nameField); });
+    email.addEventListener('input', ()=>{ if(emailRe.test(email.value.trim())) clearError(emailField); });
 
     form.addEventListener('submit', (ev)=>{
       ev.preventDefault();
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
 
-      if(!name.value.trim() || !emailOk){
-        const bad = !name.value.trim() ? name : email;
-        bad.focus();
-        bad.style.borderColor = '#E89B7A';
-        setTimeout(()=>{ bad.style.borderColor=''; }, 1600);
+      if(!validate()){
+        // Show the banner and focus the first bad field
+        formError.classList.add('show');
+        const firstBad = form.querySelector('.field.invalid input');
+        if(firstBad) firstBad.focus();
         return;
       }
+
+      formError.classList.remove('show');
       const first = name.value.trim().split(' ')[0];
       sentMsg.textContent = `Thanks, ${first} — your early-access request is in. We'll email ${email.value.trim()} shortly.`;
+
+      // Show the "Mail sent!" success state.
       form.style.display = 'none';
       sent.classList.add('show');
     });
 
     again.addEventListener('click', ()=>{
       form.reset();
+      clearError(nameField);
+      clearError(emailField);
+      formError.classList.remove('show');
       sent.classList.remove('show');
       form.style.display = '';
     });
