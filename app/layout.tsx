@@ -9,7 +9,7 @@ const sans = Hanken_Grotesk({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vireo.video";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://editvireo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

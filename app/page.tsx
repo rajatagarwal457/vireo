@@ -113,7 +113,8 @@ const TWEETS = [
   },
 ];
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vireo.video";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://editvireo.com";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -252,7 +253,7 @@ export default function Home() {
                 </span>
                 <span className="sep" aria-hidden="true"></span>
                 <span className="ef-badge">
-                  <img src="/ef-logo.svg" alt="" className="efbox" aria-hidden="true" />
+                  <img src={`${BASE_PATH}/ef-logo.svg`} alt="" className="efbox" aria-hidden="true" />
                   Backed by Entrepreneurs First
                 </span>
                 <span className="sep" aria-hidden="true"></span>
@@ -266,21 +267,6 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
-
-        {/* LOGO STRIP */}
-        <div className="logo-strip">
-          <div className="wrap">
-            <p>Trusted by 2,400+ creators &amp; teams</p>
-            <div className="logo-row" aria-hidden="true">
-              <span>lumen&amp;co</span>
-              <span>REELCRAFT</span>
-              <span>studio nomad</span>
-              <span>PULSE.media</span>
-              <span>okframe</span>
-              <span>viralist</span>
-            </div>
-          </div>
-        </div>
 
         {/* HOW IT WORKS */}
         <section id="how" aria-labelledby="how-title">
@@ -579,7 +565,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: 20 }}>
                 <span className="ef-badge">
-                  <img src="/ef-logo.svg" alt="" className="efbox" aria-hidden="true" />
+                  <img src={`${BASE_PATH}/ef-logo.svg`} alt="" className="efbox" aria-hidden="true" />
                   Backed by Entrepreneurs First
                 </span>
               </div>
