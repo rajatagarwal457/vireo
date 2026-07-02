@@ -1,6 +1,6 @@
 # Vireo — landing page
 
-A veed.io-style marketing site for **Vireo**, the AI video editor for creators. Built with Next.js (App Router) and plain CSS — no UI framework.
+Marketing site for **Vireo**, the AI video editor for creators. Built with Next.js (App Router) and plain CSS — no UI framework.
 
 ## Highlights
 
@@ -21,4 +21,9 @@ npm run dev    # http://localhost:3000
 npm run build  # production build (static prerender)
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` to the production origin (defaults to `https://vireo.video`) so canonical/OG/sitemap URLs resolve correctly.
+## Deploy
+
+Pushes to `main` build a static export and publish it to GitHub Pages via `.github/workflows/deploy.yml`.
+
+- `NEXT_PUBLIC_SITE_URL` — production origin (defaults to `https://editvireo.com`) so canonical/OG/sitemap URLs resolve correctly.
+- `NEXT_PUBLIC_BASE_PATH` — set to the repo sub-path (e.g. `/vireo`) when serving from a GitHub project page; leave unset when serving from a domain root.
