@@ -11,8 +11,10 @@ const PHRASES: { start: number; end: number; words: string[] }[] = [
   { start: 13.6, end: 17.6, words: ["best", "summer", "ever."] },
 ];
 
-// deterministic bar heights so server and client render identically
-const WAVE = Array.from({ length: 64 }, (_, i) => 25 + Math.abs(Math.sin(i * 1.7) * 65));
+// deterministic bar heights, rounded so server and client serialize identically
+const WAVE = Array.from({ length: 64 }, (_, i) =>
+  Math.round(25 + Math.abs(Math.sin(i * 1.7) * 65))
+);
 
 const TOOLS = [
   {

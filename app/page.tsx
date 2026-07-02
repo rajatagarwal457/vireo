@@ -252,9 +252,7 @@ export default function Home() {
                 </span>
                 <span className="sep" aria-hidden="true"></span>
                 <span className="ef-badge">
-                  <span className="efbox" aria-hidden="true">
-                    EF
-                  </span>
+                  <img src="/ef-logo.svg" alt="" className="efbox" aria-hidden="true" />
                   Backed by Entrepreneurs First
                 </span>
                 <span className="sep" aria-hidden="true"></span>
@@ -581,9 +579,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: 20 }}>
                 <span className="ef-badge">
-                  <span className="efbox" aria-hidden="true">
-                    EF
-                  </span>
+                  <img src="/ef-logo.svg" alt="" className="efbox" aria-hidden="true" />
                   Backed by Entrepreneurs First
                 </span>
               </div>
