@@ -37,8 +37,7 @@ jobs:
           # When the editvireo.com custom domain is configured in Settings → Pages,
           # delete NEXT_PUBLIC_BASE_PATH and set NEXT_PUBLIC_SITE_URL to
           # https://editvireo.com — the site will then serve from the domain root.
-          NEXT_PUBLIC_BASE_PATH: /vireo
-          NEXT_PUBLIC_SITE_URL: https://rajatagarwal457.github.io/vireo
+          NEXT_PUBLIC_SITE_URL: https://editvireo.com
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
