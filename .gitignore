@@ -1,7 +1,20 @@
+# dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# next.js build output
 .next/
 out/
-next-env.d.ts
-*.tsbuildinfo
+
+# env
+.env
 .env*.local
-.vercel
+
+# debug / OS / editor
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
